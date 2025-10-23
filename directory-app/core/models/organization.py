@@ -1,7 +1,8 @@
 from sqlalchemy import String, ForeignKey, ARRAY
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from .base import Base, organization_activity
+from .base import Base
+from .organization_activity import OrganizationActivity
 
 
 class Organization(Base):
@@ -30,6 +31,6 @@ class Organization(Base):
     building = relationship("Building", back_populates="organizations")
     activities = relationship(
         "Activity",
-        secondary=organization_activity,
+        secondary=OrganizationActivity.__table__,
         back_populates="organizations"
     )
