@@ -7,9 +7,12 @@ class BuildingBase(BaseModel):
     latitude: float
     longitude: float
 
+    class Config:
+        from_attributes = True
+
 
 class Building(BaseModel):
     pass
 
     class Config:
-        from_attrs = True
+        from_attributes = True

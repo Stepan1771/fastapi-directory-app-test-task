@@ -8,9 +8,12 @@ class ActivityBase(BaseModel):
     name: str
     level: int
 
+    class Config:
+        from_attributes = True
+
 class Activity(ActivityBase):
     parent_id: int | None = None
     children: List['Activity'] = []
 
     class Config:
-        from_attrs = True
+        from_attributes = True

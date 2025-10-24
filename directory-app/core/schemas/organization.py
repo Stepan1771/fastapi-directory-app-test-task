@@ -11,7 +11,21 @@ class OrganizationBase(BaseModel):
     name: str
     phone_numbers: List[str]
 
+    class Config:
+        from_attributes = True
 
-class Organization(BaseModel):
+
+class Organization(OrganizationBase):
     building: Building
     activities: List[Activity]
+
+    class Config:
+        from_attributes = True
+
+
+
+class OrganizationWithDistance(Organization):
+    distance: float | None = None
+
+    class Config:
+        from_attributes = True
