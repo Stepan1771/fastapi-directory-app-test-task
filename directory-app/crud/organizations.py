@@ -1,4 +1,4 @@
-from typing import Annotated, List, Sequence
+from typing import List, Sequence
 
 from fastapi import Depends, HTTPException
 from sqlalchemy import select
@@ -7,8 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import joinedload, selectinload
 
 from api.dependencies.api_key import verify_api_key
-from core.models import Organization, Building, Activity, OrganizationActivity
-from core.schemas.organization import OrganizationWithDistance
+from core.models import Organization, Activity
 
 from core.schemas.search_radius import SearchRadius
 from utils.calculate_radius import calculate_distance
