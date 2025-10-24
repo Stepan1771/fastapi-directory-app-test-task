@@ -7,7 +7,6 @@ from core.config import settings
 from core.models import db_helper
 
 from api.dependencies.api_key import verify_api_key
-from core.schemas.organization import Organization
 
 import crud.organizations as crud_organizations
 
