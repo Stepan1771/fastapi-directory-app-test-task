@@ -65,7 +65,10 @@ async def get_organizations_by_activity(
     return result
 
 
-@router.post("/get-organizations-in-radius")
+@router.post(
+    "/get-organizations-in-radius",
+    response_model=List[OrganizationDistance],
+)
 async def get_organizations_in_radius(
         session: Annotated[
             AsyncSession,
