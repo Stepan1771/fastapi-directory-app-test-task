@@ -88,7 +88,6 @@ async def get_all_organizations_in_radius(
             org_dict.distance = round(distance, 2)
             organizations_with_distance.append(org_dict)
 
-        # Сортируем по расстоянию
     organizations_with_distance.sort(key=lambda x: x.distance)
 
     return organizations_with_distance
@@ -118,8 +117,7 @@ async def search_organizations_by_activity_type(
         activity_id: int,
 ):
     async def get_child_activity_ids(parent_id: int, current_level: int = 1) -> List[int]:
-        """Рекурсивно получаем ID всех дочерних видов деятельности (до 3 уровня)"""
-        if current_level > 3:  # Ограничение уровня вложенности
+        if current_level > 3:
             return []
 
         stmt = await session.execute(
