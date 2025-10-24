@@ -9,6 +9,7 @@ from core.models import db_helper
 from api.dependencies.api_key import verify_api_key
 
 import crud.organizations as crud_organizations
+from core.schemas.organization import Organization
 
 from core.schemas.search_radius import SearchRadius
 
@@ -18,7 +19,10 @@ router = APIRouter(
 )
 
 
-@router.get("/get-organizations-in-building")
+@router.get(
+    "/get-organizations-in-building",
+    response_model=List[Organization],
+)
 async def get_organizations_in_building(
         session: Annotated[
             AsyncSession,
@@ -38,7 +42,10 @@ async def get_organizations_in_building(
     return result
 
 
-@router.get("/get-organizations-by-activity")
+@router.get(
+    "/get-organizations-by-activity",
+    response_model=List[Organization],
+)
 async def get_organizations_by_activity(
         session: Annotated[
             AsyncSession,
@@ -78,7 +85,10 @@ async def get_organizations_in_radius(
     return result
 
 
-@router.get("/get-organizations-by-id")
+@router.get(
+    "/get-organizations-by-id",
+    response_model=Organization,
+)
 async def get_organizations_by_id(
         session: Annotated[
             AsyncSession,
@@ -98,7 +108,10 @@ async def get_organizations_by_id(
     return result
 
 
-@router.get("/get-organizations-by-activity-type")
+@router.get(
+    "/get-organizations-by-activity-type",
+    response_model=List[Organization],
+)
 async def get_organizations_by_activity_type(
         session: Annotated[
             AsyncSession,
@@ -118,7 +131,10 @@ async def get_organizations_by_activity_type(
     return result
 
 
-@router.get("/get-organizations-by-name")
+@router.get(
+    "/get-organizations-by-name",
+    response_model=List[Organization],
+)
 async def get_organizations_by_name(
         session: Annotated[
             AsyncSession,
