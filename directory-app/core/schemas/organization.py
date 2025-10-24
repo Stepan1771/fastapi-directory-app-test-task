@@ -15,3 +15,7 @@ class Organization(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class OrganizationDistance(Organization):
+    distance: float | None = None
