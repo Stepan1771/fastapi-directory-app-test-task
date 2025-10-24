@@ -23,6 +23,8 @@
 6. Запуск сервера uvicorn
  - uvicorn main:main_app
 
+## API_KEY = qwerty 
+
 
 ### Связь со мной:
 - тг: @BonusYou
