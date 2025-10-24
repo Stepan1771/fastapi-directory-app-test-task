@@ -23,6 +23,8 @@
 6. Запуск сервера uvicorn
  - uvicorn main:main_app
 
+# Приложение запускается из "directory-app"
+
 ## API_KEY = qwerty 
 
 
