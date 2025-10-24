@@ -9,7 +9,7 @@ from core.models import db_helper
 from api.dependencies.api_key import verify_api_key
 
 import crud.organizations as crud_organizations
-from core.schemas.organization import Organization
+from core.schemas.organization import Organization, OrganizationDistance
 
 from core.schemas.search_radius import SearchRadius
 
