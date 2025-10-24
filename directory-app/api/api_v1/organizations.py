@@ -1,4 +1,4 @@
-from typing import Annotated, List
+from typing import Annotated, List, Sequence
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -17,15 +17,15 @@ router = APIRouter(
 )
 
 
-@router.get("/all-organizations-in-building")
-async def get_all_organizations_in_building(
+@router.get("/get-organizations-in-building")
+async def get_organizations_in_building(
         session: Annotated[
             AsyncSession,
             Depends(db_helper.session_getter),
         ],
         api_key: Annotated[
             str,
-            Depends(verify_api_key)
+            Depends(verify_api_key),
         ],
         building_id: int,
 ):
@@ -37,15 +37,15 @@ async def get_all_organizations_in_building(
     return result
 
 
-@router.get("/all-organizations-by-activity")
-async def get_all_organizations_by_activity(
+@router.get("/get-organizations-by-activity")
+async def get_organizations_by_activity(
         session: Annotated[
             AsyncSession,
             Depends(db_helper.session_getter),
         ],
         api_key: Annotated[
             str,
-            Depends(verify_api_key)
+            Depends(verify_api_key),
         ],
         activity_id: int,
 ):
