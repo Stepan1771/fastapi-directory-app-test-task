@@ -1,19 +1,13 @@
-from typing import List
+from typing import Optional
 
 from pydantic import BaseModel
 
 
-class ActivityBase(BaseModel):
+class Activity(BaseModel):
     id: int
     name: str
+    parent_id: Optional[int]
     level: int
-
-    class Config:
-        from_attributes = True
-
-class Activity(ActivityBase):
-    parent_id: int | None = None
-    children: List['Activity'] = []
 
     class Config:
         from_attributes = True
