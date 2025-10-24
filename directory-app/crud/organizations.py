@@ -64,7 +64,7 @@ async def get_all_organizations_in_radius(
         api_key: Depends(verify_api_key),
         search_radius: SearchRadius,
 ):
-    organizations_with_distance = []
+    result = []
 
     stmt = await session.execute(
         select(Organization)
@@ -73,23 +73,18 @@ async def get_all_organizations_in_radius(
     )
     organizations = stmt.unique().scalars().all()
 
-    if not organizations:
-        raise HTTPException(status_code=404, detail="Organization not found")
-
     for org in organizations:
+        building = org.building
         distance = calculate_distance(
-            search_radius.center.latitude, search_radius.center.longitude,
-            org.building.latitude, org.building.longitude
+            lat1=search_radius.center.latitude,
+            lon1=search_radius.center.longitude,
+            lat2=building.latitude,
+            lon2=building.longitude,
         )
-
         if distance <= search_radius.radius_km:
-            org_dict = OrganizationWithDistance.from_orm(org)
-            org_dict.distance = round(distance, 2)
-            organizations_with_distance.append(org_dict)
+            result.append(org)
 
-    organizations_with_distance.sort(key=lambda x: x.distance)
-
-    return organizations_with_distance
+    return result
 
 
 async def get_organization_by_id(
